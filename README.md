@@ -1,3 +1,7 @@
+## Chapter 4
+
+![ch04](/readme_images/Ch04.png)
+
 ## Chapter 3
 
 ![ch03](/readme_images/Ch03.png)
