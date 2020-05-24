@@ -62,6 +62,10 @@ var IssueFilter = /*#__PURE__*/function (_React$Component) {
 }(React.Component);
 
 function IssueTable(props) {
+  var rowStyle = {
+    border: '1px solid silver',
+    padding: 4
+  };
   var issueRows = props.issues.map(function (issue) {
     return /*#__PURE__*/React.createElement(IssueRow, {
       key: issue.id,
@@ -69,10 +73,6 @@ function IssueTable(props) {
       issue: issue
     });
   });
-  var rowStyle = {
-    border: "1px solid silver",
-    padding: 4
-  };
   return /*#__PURE__*/React.createElement("table", {
     className: "bordered-table"
   }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "ID"), /*#__PURE__*/React.createElement("th", null, "Status"), /*#__PURE__*/React.createElement("th", null, "Owner"), /*#__PURE__*/React.createElement("th", null, "Created"), /*#__PURE__*/React.createElement("th", null, "Effort"), /*#__PURE__*/React.createElement("th", null, "Due Date"), /*#__PURE__*/React.createElement("th", null, "Title"))), /*#__PURE__*/React.createElement("tbody", null, issueRows));
@@ -109,8 +109,8 @@ var IssueAdd = /*#__PURE__*/function (_React$Component2) {
         status: 'New'
       };
       this.props.createIssue(issue);
-      form.owner.value = "";
-      form.title.value = "";
+      form.owner.value = '';
+      form.title.value = '';
     }
   }, {
     key: "render",
