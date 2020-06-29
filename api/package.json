@@ -1,0 +1,24 @@
+{
+  "name": "pro-mern-stack-2-api",
+  "version": "1.0.0",
+  "description": "Pro MERN Stack (2nd Edition) API",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon -e js,graphql server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agear/cs5610.git"
+  },
+  "author": "alexgear@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server-core": "^2.12.0",
+    "apollo-server-express": "^2.13.1",
+    "express": "^4.17.1",
+    "graphql": "^14.6.0",
+    "mongodb": "^3.5.9",
+    "nodemon": "^1.19.1"
+  }
+}
