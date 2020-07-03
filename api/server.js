@@ -1,35 +1,16 @@
 const fs = require('fs');
+require('dotenv').config();
 const express = require('express');
 const { ApolloServer, UserInputError } = require('apollo-server-express');
 const { GraphQLScalarType } = require('graphql');
 const { Kind } = require('graphql/language');
 const { MongoClient } = require('mongodb');
 
-const url = 'mongodb://localhost:27017/issuetracker';
-
-// Atlas URL - replace UUU with user, PPP with password, XXX with hostname
-// const url = 'mongodb+srv://UUU:PPP@clusterO-XXX.mongodb.net/issuetracker?retryWrites=true';
-
-// mLab URL - replace UUU with user, PPP with password, XXX with hostname
-// const url = 'mongodb://UUU:PPP@XXX.mlab.com:33533/issuetracker';
+const url = process.env.DB_URL || 'mongodb://localhost/issuetracker';
 
 let db;
 
 let aboutMessage = "Issue Tracker API v1.0";
-
-// const issueDB = [
-//   {
-//     id: 1, status: 'New', owner: 'Ravan', effort: 5,
-//     created: new Date('2019-01-15'), due: undefined,
-//     title: 'Error in console when clicking Add',
-//   },
-//   {
-//     id: 2, status: 'Assigned', owner: 'Eddie', effort: 14,
-//     created: new Date('2019-01-16'), due: new Date('2019-02-01'),
-//     title: 'Missing bottom border on panel',
-//   },
-// ];
-
 
 const GraphQLDate = new GraphQLScalarType({
   name: 'GraphQLDate',
@@ -86,12 +67,8 @@ async function getNextSequence(name) {
 async function issueAdd(_, { issue }) {
   issueValidate(issue);
   issue.created = new Date();
-  // issue.id = issueDB.length + 1;
   issue.id = await getNextSequence('issues');
-  // if (issue.status === undefined) issue.status = 'New';
-  // issueDB.push(issue);
   const result = await db.collection('issues').insertOne(issue);
-  // return issue;
   const savedIssue = await db.collection('issues')
   .findOne({ _id: result.insertedId });
   return savedIssue;
@@ -124,15 +101,15 @@ const server = new ApolloServer({
 });
 const app = express();
 
-// app.use(express.static('public'));
-
 server.applyMiddleware({ app, path: '/graphql' });
+
+const port = process.env.API_SERVER_PORT || 3000;
 
 (async function () {
   try {
     await connectToDb();
-    app.listen(3000, function () {
-      console.log('API server started on port 3000');
+    app.listen(port, function () {
+      console.log(`API server started on port ${port}`);
 });
   } catch (err) {
     console.log('ERROR:', err);

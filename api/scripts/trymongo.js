@@ -1,12 +1,8 @@
-const url = 'mongodb://localhost:27017/issuetracker';
+require('dotenv').config();
 const { MongoClient } = require('mongodb');
 
+const url = process.env.DB_URL || 'mongodb://localhost/issuetracker';
 
-// Atlas URL - replace UUU with user, PPP with password, XXX with hostname
-// const url = 'mongodb+srv://UUU:PPP@clusterO-XXX.mongodb.net/issuetracker?retryWrites=true';
-
-// mLab URL - replace UUU with user, PPP with password, XXX with hostname
-// const url = 'mongodb://UUU:PPP@XXX.mlab.com:33533/issuetracker';
 
 function testWithCallbacks(callback) {
     console.log('\n--- testWithCallbacks ---');
@@ -17,7 +13,7 @@ function testWithCallbacks(callback) {
             callback(err);
             return;
         }
-        console.log('Connected to MongoDB');
+        console.log('Connected to MongoDB URL', url);
 
         const db = client.db();
         const collection = db.collection('employees');
@@ -45,33 +41,13 @@ function testWithCallbacks(callback) {
     });
 }
 
-// const client = new MongoClient(url, { useNewUrlParser: true });
-// client.connect();
-
-// client.connect(function(err, client) {
-//     const db = client.db();
-// }
-
-// const collection = db.collection('employees');
-
-// const employee = { id: 1, name: 'A. Callback', age: 23 };
-// collection.insertOne(employee, function(err, result) {
-//     console.log("Result of insert:\n", result.insertedId);
-// })
-
-// collection.find({ _id: result.insertedId})
-//     .toArray(function(err, docs)) {
-//         console.log('Result of find:\n', docs);
-//     }
-
-// client.close();
 
 async function testWithAsync() {
     console.log('\n--- testWithAsync ---');
     const client = new MongoClient(url, { useNewUrlParser: true });
     try {
         await client.connect();
-        console.log('Connected to MongoDB');
+        console.log('Connected to MongoDB URL', url);
         const db = client.db();
         const collection = db.collection('employees');
 
