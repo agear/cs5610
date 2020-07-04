@@ -23,6 +23,7 @@ module.exports = {
     'react',
   ],
   rules: {
+    "quotes": "warning",
     'max-classes-per-file': 0,
   },
 };
