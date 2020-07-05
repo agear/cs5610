@@ -23,7 +23,7 @@ const GraphQLDate = new GraphQLScalarType({
     return Number.isNaN(dateValue.getTime()) ? undefined : dateValue;
   },
   parseLiteral(ast) {
-    if (ast.kind == Kind.STRING) {
+    if (ast.kind === Kind.STRING) {
       const value = new Date(ast.value);
       return Number.isNaN(value.getTime()) ? undefined : value;
     }
@@ -37,7 +37,7 @@ function setAboutMessage(_, { message }) {
 }
 
 async function issueList() {
-  const issue = await db.collection('issues').find({}).toArray();
+  const issues = await db.collection('issues').find({}).toArray();
   return issues;
 }
 
@@ -71,7 +71,7 @@ async function issueAdd(_, { issue }) {
 
   const result = await db.collection('issues').insertOne(newIssue);
   const savedIssue = await db.collection('issues')
-  .findOne({ _id: result.insertedId });
+    .findOne({ _id: result.insertedId });
   return savedIssue;
 }
 
@@ -100,23 +100,23 @@ const server = new ApolloServer({
   formatError: (error) => {
     console.log(error);
     return error;
-  }
+  },
 });
 
 const app = express();
 
-const enableCors = (process.env.ENABLE_CORS || 'true') == 'true';
+const enableCors = (process.env.ENABLE_CORS || 'true') === 'true';
 console.log('CORS settings:', enableCors);
 server.applyMiddleware({ app, path: '/graphql', cors: enableCors });
 
 const port = process.env.API_SERVER_PORT || 3000;
 
-(async function () {
+(async () => {
   try {
     await connectToDb();
     app.listen(port, () => {
       console.log(`API server started on port ${port}`);
-});
+    });
   } catch (err) {
     console.log('ERROR:', err);
   }
