@@ -1,3 +1,10 @@
+## Chapter 7
+
+Had to delete .eslintrc from base directory.
+
+![ch07](/readme_images/Ch07_1.png)
+![ch07](/readme_images/Ch07_2.png)
+
 ## Chapter 6
 
 ![ch06](/readme_images/Ch06.png)
