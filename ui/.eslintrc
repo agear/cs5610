@@ -4,6 +4,7 @@
         "browser": true
     },
     "rules": {
+        "import/extensions": [ "error", "always", { "ignorePackges": true } ],
         "react/prop-types": "off",
         "no-console": 0
     }
