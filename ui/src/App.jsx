@@ -4,7 +4,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import IssueList from './IssueList.jsx';
-import { mode } from '../webpack.config.js';
 
 const element = <IssueList />;
 

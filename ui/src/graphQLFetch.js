@@ -1,3 +1,5 @@
+/* eslint "no-alert": "off" */
+
 const dateRegex = new RegExp('^\\d\\d\\d\\d-\\d\\d-\\d\\d');
 
 function jsonDateReviver(key, value) {
@@ -27,6 +29,6 @@ export default async function graphQLFetch(query, variables = {}) {
     return result.data;
   } catch (e) {
     alert(`Error in sending data to server: ${e.message}`);
+    return null;
   }
-  return null;
 }

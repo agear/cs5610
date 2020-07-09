@@ -15,10 +15,10 @@ function IssueRow({ issue }) {
 }
 
 export default function IssueTable({ issues }) {
-  const rowStyle = { border: '1px solid silver', padding: 4 };
   const issueRows = issues.map(issue => (
-    <IssueRow key={issue.id} rowStyle={rowStyle} issue={issue} />
+    <IssueRow key={issue.id} issue={issue} />
   ));
+
   return (
     <table className="bordered-table">
       <thead>

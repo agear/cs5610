@@ -21,6 +21,6 @@ module.exports = {
       name: 'vendor',
       chunks: 'all',
     },
-    devtool: 'source-map',
   },
+  devtool: 'source-map',
 };
