@@ -1,3 +1,7 @@
+## Chapter 8
+
+![ch08](/readme_images/Ch08.png)
+
 ## Chapter 7
 
 Had to delete .eslintrc from base directory.
