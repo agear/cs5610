@@ -1,3 +1,7 @@
+## Chapter 9
+
+![ch09](/readme_images/Ch09.png)
+
 ## Chapter 8
 
 ![ch08](/readme_images/Ch08.png)
