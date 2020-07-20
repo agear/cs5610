@@ -10,6 +10,7 @@ async function get(_, { id }) {
 async function list(_, { status, effortMin, effortMax }) {
   const db = getDb();
   const filter = {};
+
   if (status) filter.status = status;
 
   if (effortMin !== undefined || effortMax !== undefined) {

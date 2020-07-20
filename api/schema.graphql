@@ -37,8 +37,8 @@ type Query {
     issueList(
         status: StatusType
         effortMin: Int
-        eforrtMax: Int
-        ): [Issue!]!
+        effortMax: Int
+    ): [Issue!]!
     issue(id: Int!): Issue!
 }
 
